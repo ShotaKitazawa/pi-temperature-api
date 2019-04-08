@@ -10,6 +10,6 @@
 
 # Ref
 
-* https://github.com/xesina/golang-echo-realworld-example-app
+* http://nakawatch.hatenablog.com/entry/2018/07/11/181453
 
 ---
