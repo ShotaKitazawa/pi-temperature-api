@@ -1,8 +1,8 @@
 package usecase
 
 import (
-	"github.com/ShotaKitazawa/pi-temterature-api/domain"
-	"github.com/ShotaKitazawa/pi-temterature-api/usecase/interfaces"
+	"github.com/ShotaKitazawa/pi-temperature-api/domain"
+	"github.com/ShotaKitazawa/pi-temperature-api/usecase/interfaces"
 )
 
 type UserInteractor struct {

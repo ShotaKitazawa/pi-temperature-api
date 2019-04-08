@@ -1,8 +1,8 @@
 package external
 
 import (
-	"github.com/ShotaKitazawa/pi-temterature-api/adapter/controllers"
-	"github.com/ShotaKitazawa/pi-temterature-api/external/mysql"
+	"github.com/ShotaKitazawa/pi-temperature-api/adapter/controllers"
+	"github.com/ShotaKitazawa/pi-temperature-api/external/mysql"
 
 	"github.com/gin-gonic/gin"
 )
@@ -21,6 +21,5 @@ func init() {
 
 	v1.POST("/users", func(c *gin.Context) { userController.Create(c) })
 
-	Router = router
+	Router = r
 }
-

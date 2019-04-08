@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"github.com/ShotaKitazawa/pi-temterature-api/adapter/gateway"
-	"github.com/ShotaKitazawa/pi-temterature-api/adapter/interfaces"
-	"github.com/ShotaKitazawa/pi-temterature-api/domain"
-	"github.com/ShotaKitazawa/pi-temterature-api/usecase"
+	"github.com/ShotaKitazawa/pi-temperature-api/adapter/gateway"
+	"github.com/ShotaKitazawa/pi-temperature-api/adapter/interfaces"
+	"github.com/ShotaKitazawa/pi-temperature-api/domain"
+	"github.com/ShotaKitazawa/pi-temperature-api/usecase"
 
 	"github.com/jinzhu/gorm"
 	"github.com/pkg/errors"

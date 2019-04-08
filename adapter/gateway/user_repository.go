@@ -1,7 +1,7 @@
 package gateway
 
 import (
-	"github.com/ShotaKitazawa/pi-temterature-api/domain"
+	"github.com/ShotaKitazawa/pi-temperature-api/domain"
 
 	"github.com/jinzhu/gorm"
 )

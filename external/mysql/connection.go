@@ -1,7 +1,7 @@
 package mysql
 
 import (
-	"github.com/ShotaKitazawa/pi-temterature-api/adapter/gateway"
+	"github.com/ShotaKitazawa/pi-temperature-api/adapter/gateway"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
