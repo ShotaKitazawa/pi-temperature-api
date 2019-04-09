@@ -12,7 +12,7 @@ var db *gorm.DB
 func Connect() *gorm.DB {
 	var err error
 
-	db, err = gorm.Open("mysql", "root:@tcp(db:3306)/hoge")
+	db, err = gorm.Open("mysql", "root:@tcp(db:3306)/pi-temterature")
 
 	if err != nil {
 		panic(err)
