@@ -1,4 +1,4 @@
-package mysql
+package sqlite
 
 import (
 	"github.com/ShotaKitazawa/pi-temperature-api/adapter/gateway"
@@ -12,7 +12,7 @@ var db *gorm.DB
 func Connect() *gorm.DB {
 	var err error
 
-	db, err = gorm.Open("sqlite", "hoge")
+	db, err = gorm.Open("sqlite3", "hoge")
 
 	if err != nil {
 		panic(err)
