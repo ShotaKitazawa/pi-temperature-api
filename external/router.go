@@ -2,7 +2,8 @@ package external
 
 import (
 	"github.com/ShotaKitazawa/pi-temperature-api/adapter/controllers"
-	"github.com/ShotaKitazawa/pi-temperature-api/external/mysql"
+	// "github.com/ShotaKitazawa/pi-temperature-api/external/mysql"
+	"github.com/ShotaKitazawa/pi-temperature-api/external/sqlite"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,7 +16,8 @@ func init() {
 
 	logger := &Logger{}
 
-	conn := mysql.Connect()
+	// conn := mysql.Connect()
+	conn := sqlite.Connect()
 
 	userController := controllers.NewUserController(conn, logger)
 
