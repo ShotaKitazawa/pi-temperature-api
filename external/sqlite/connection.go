@@ -2,7 +2,6 @@ package sqlite
 
 import (
 	"github.com/ShotaKitazawa/pi-temperature-api/adapter/gateway"
-
 	"github.com/jinzhu/gorm"
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -17,11 +16,18 @@ func Connect() *gorm.DB {
 	if err != nil {
 		panic(err)
 	}
-	if !db.HasTable(&gateway.User{}) {
-		if err := db.Table("users").CreateTable(&gateway.User{}).Error; err != nil {
+
+	if !db.HasTable(&gateway.Input{}) {
+		if err := db.Table("inputs").CreateTable(&gateway.Input{}).Error; err != nil {
 			panic(err)
 		}
 	}
+	//if !db.HasTable(&gateway.Output{}) {
+	//	if err := db.Table("outputs").CreateTable(&gateway.Output{}).Error; err != nil {
+	//		panic(err)
+	//	}
+	//}
+
 	return db
 }
 

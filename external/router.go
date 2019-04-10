@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Router called by main.go
 var Router *gin.Engine
 
 func init() {
@@ -16,12 +17,13 @@ func init() {
 
 	logger := &Logger{}
 
-	// conn := mysql.Connect()
-	conn := sqlite.Connect()
+	// db_conn := mysql.Connect()
+	dbConn := sqlite.Connect()
 
-	userController := controllers.NewUserController(conn, logger)
+	InputController := controllers.NewInputController(dbConn, logger)
+	// OutputController := controllers.NewOutputController(dbConn, logger)
 
-	v1.POST("/users", func(c *gin.Context) { userController.Create(c) })
+	v1.GET("/temperature", func(c *gin.Context) { InputController.Get1(c) })
 
 	Router = r
 }

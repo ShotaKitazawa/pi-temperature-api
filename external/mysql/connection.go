@@ -17,11 +17,18 @@ func Connect() *gorm.DB {
 	if err != nil {
 		panic(err)
 	}
-	if !db.HasTable(&gateway.User{}) {
-		if err := db.Table("users").CreateTable(&gateway.User{}).Error; err != nil {
+
+	if !db.HasTable(&gateway.Input{}) {
+		if err := db.Table("input").CreateTable(&gateway.Input{}).Error; err != nil {
 			panic(err)
 		}
 	}
+	if !db.HasTable(&gateway.Output{}) {
+		if err := db.Table("output").CreateTable(&gateway.Output{}).Error; err != nil {
+			panic(err)
+		}
+	}
+
 	return db
 }
 
