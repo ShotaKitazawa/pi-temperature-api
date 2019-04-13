@@ -23,7 +23,7 @@ func init() {
 	httpConn := rest.Request("http://localhost:8080/")
 
 	InputController := controllers.NewInputController(dbConn, logger)
-	OutputController := controllers.NewOutputController(httpConn, logger)
+	OutputController := controllers.NewOutputController(dbConn, httpConn, logger)
 
 	v1.GET("/temperature", func(c *gin.Context) { InputController.Get1(c) })
 	v1.POST("/aircon", func(c *gin.Context) { OutputController.Post(c) })

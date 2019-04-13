@@ -7,6 +7,7 @@ import (
 	"github.com/ShotaKitazawa/pi-temperature-api/adapter/gateway"
 	"github.com/ShotaKitazawa/pi-temperature-api/adapter/interfaces"
 	"github.com/ShotaKitazawa/pi-temperature-api/usecase"
+	"github.com/pkg/errors"
 
 	"github.com/jinzhu/gorm"
 )
@@ -15,11 +16,11 @@ type InputController struct {
 	Interactor usecase.InputInteractor
 }
 
-func NewInputController(conn *gorm.DB, logger interfaces.Logger) *InputController {
+func NewInputController(dbConn *gorm.DB, logger interfaces.Logger) *InputController {
 	return &InputController{
 		Interactor: usecase.InputInteractor{
 			InputRepository: &gateway.InputRepository{
-				Conn: conn,
+				DBConn: dbConn,
 			},
 			Logger: logger,
 		},
@@ -31,7 +32,7 @@ func (controller *InputController) Get1(c interfaces.Context) {
 		Request struct {
 		}
 		Response struct {
-			ID          int        `json:"user_id"`
+			ID          uint       `json:"id"`
 			Temperature float64    `json:"temperature"`
 			Humidity    float64    `json:"humidity"`
 			CreatedAt   *time.Time `json:"created_at"`
@@ -41,17 +42,16 @@ func (controller *InputController) Get1(c interfaces.Context) {
 	c.Bind(&req)
 
 	data, err := controller.Interactor.Get1()
-	fmt.Println(err)
 	if err != nil {
-		//controller.Interactor.Logger.Log(errors.Wrap(err, "input_controller: cannot get data"))
-		//c.JSON(500, NewError(500, err.Error()))
-		//return
+		controller.Interactor.Logger.Log(errors.Wrap(err, "input_controller: cannot get data"))
+		c.JSON(500, NewError(500, err.Error()))
+		return
 	}
 	res := Response{
-		// ID:          data.ID,
+		ID:          data.ID,
 		Temperature: data.Temperature,
 		Humidity:    data.Humidity,
-		// CreatedAt:   data.CreatedAt,
+		CreatedAt:   data.CreatedAt,
 	}
 	c.JSON(201, res)
 }

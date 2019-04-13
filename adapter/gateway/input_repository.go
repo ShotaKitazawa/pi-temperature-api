@@ -8,29 +8,27 @@ import (
 
 type (
 	InputRepository struct {
-		Conn *gorm.DB
+		DBConn *gorm.DB
 	}
 
 	Input struct {
 		gorm.Model
-		// Id          int
 		Temperature float64
 		Humidity    float64
-		//CreatedAt   *time.Time
 	}
 )
 
 func (r *InputRepository) Get1() (*domain.Input, error) {
 	input := Input{}
 
-	if err := r.Conn.First(&input); err.Error != nil {
-		return nil, err.Error
+	if err := r.DBConn.First(&input).Error; err != nil {
+		return nil, err
 	}
 	return &domain.Input{
-		//ID:          input.ID,
+		ID:          input.ID,
 		Temperature: input.Temperature,
 		Humidity:    input.Humidity,
-		//CreatedAt:   input.CreatedAt,
+		CreatedAt:   &input.CreatedAt,
 	}, nil
 }
 

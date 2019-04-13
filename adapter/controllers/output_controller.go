@@ -8,6 +8,7 @@ import (
 	"github.com/ShotaKitazawa/pi-temperature-api/adapter/interfaces"
 	"github.com/ShotaKitazawa/pi-temperature-api/domain"
 	"github.com/ShotaKitazawa/pi-temperature-api/usecase"
+	"github.com/jinzhu/gorm"
 	"github.com/pkg/errors"
 )
 
@@ -15,11 +16,12 @@ type OutputController struct {
 	Interactor usecase.OutputInteractor
 }
 
-func NewOutputController(conn *http.Request, logger interfaces.Logger) *OutputController {
+func NewOutputController(dbConn *gorm.DB, httpConn *http.Request, logger interfaces.Logger) *OutputController {
 	return &OutputController{
 		Interactor: usecase.OutputInteractor{
 			OutputRepository: &gateway.OutputRepository{
-				Conn: conn,
+				DBConn:   dbConn,
+				HttpConn: httpConn,
 			},
 			Logger: logger,
 		},
