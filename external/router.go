@@ -18,9 +18,9 @@ func init() {
 
 	logger := &Logger{}
 
-	// db_conn := mysql.Connect()
-	dbConn := sqlite.Connect()
-	httpConn := rest.Request()
+	// dbConn := mysql.Connect("root:@tcp(db:3306)/pi-temterature")
+	dbConn := sqlite.Connect("pi-temperature.sqlite3")
+	httpConn := rest.Request("http://localhost:8080/")
 
 	InputController := controllers.NewInputController(dbConn, logger)
 	OutputController := controllers.NewOutputController(httpConn, logger)

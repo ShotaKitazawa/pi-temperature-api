@@ -9,11 +9,10 @@ import (
 
 var db *gorm.DB
 
-func Connect() *gorm.DB {
+func Connect(target string) *gorm.DB {
 	var err error
 
-	url := "root:@tcp(db:3306)/pi-temterature"
-	db, err = gorm.Open("mysql", url)
+	db, err = gorm.Open("mysql", target)
 
 	if err != nil {
 		panic(err)

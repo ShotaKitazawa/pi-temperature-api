@@ -8,10 +8,9 @@ import (
 //var db *gorm.DB
 var req *http.Request
 
-func Request() *http.Request {
+func Request(target string) *http.Request {
 	var err error
 
-	target := "http://localhost:8080/"
 	req, err := http.NewRequest(
 		"POST",
 		target,

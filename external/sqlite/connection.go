@@ -8,11 +8,10 @@ import (
 
 var db *gorm.DB
 
-func Connect() *gorm.DB {
+func Connect(target string) *gorm.DB {
 	var err error
 
-	url := "pi-temperature.sqlite3"
-	db, err = gorm.Open("sqlite3", url)
+	db, err = gorm.Open("sqlite3", target)
 
 	if err != nil {
 		panic(err)
