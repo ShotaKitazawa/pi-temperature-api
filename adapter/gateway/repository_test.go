@@ -2,6 +2,8 @@ package gateway
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
 	"testing"
 	"time"
 
@@ -11,11 +13,22 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestMain(m *testing.M) {
+
+	if err := exec.Command("sqlite3", "../../inputs-test.sqlite3").Run(); err != nil {
+		panic(err)
+	}
+
+	code := m.Run()
+
+	os.Exit(code)
+}
+
 func TestInputGateway(t *testing.T) {
 
 	t.Run("Get1()", func(t *testing.T) {
 		t.Run("inputsテーブルから最近のデータ一つを得る", func(t *testing.T) {
-			r := createRepositoryForTest(t, "../../testdb/inputs-test.sqlite3")
+			r := createInputRepository(t, "../../testdb/inputs-test.sqlite3")
 
 			expected := &domain.Input{
 				ID:          1,
@@ -39,7 +52,7 @@ func TestInputGateway(t *testing.T) {
 			assert.Equal(t, expected.CreatedAt.Second(), actual.CreatedAt.Second())
 		})
 		t.Run("inputsテーブルが空の場合エラーを返す", func(t *testing.T) {
-			r := createRepositoryForTest(t, "../../testdb/empty-test.sqlite3")
+			r := createInputRepository(t, "../../testdb/empty-test.sqlite3")
 
 			if _, err := r.Get1(); err == nil {
 				t.Fatal("table entry in None, but not return nil")
@@ -49,8 +62,18 @@ func TestInputGateway(t *testing.T) {
 	})
 
 }
+func TestOutputGateway(t *testing.T) {
+	t.Run("Post()", func(t *testing.T) {
+		t.Run("mockに対しPOSTを送る", func(t *testing.T) {
+		})
+	})
+	t.Run("Store()", func(t *testing.T) {
+		t.Run("mockに対し1レコードInsertする", func(t *testing.T) {
+		})
+	})
+}
 
-func createRepositoryForTest(t *testing.T, path string) *InputRepository {
+func createInputRepository(t *testing.T, path string) *InputRepository {
 	db, err := gorm.Open("sqlite3", path)
 	if err != nil {
 		fmt.Println(err)

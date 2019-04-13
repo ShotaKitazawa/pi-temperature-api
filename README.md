@@ -8,6 +8,24 @@
 * ブラウザから温湿度のグラフ、On/Off のボタン表示 (Web Frontend)
 * 温湿度情報を出力する Slack Bot
 
+# Run
+
+* run immediately
+```
+go run main.go
+```
+
+* build
+```
+go build -o $(basename $PWD) main.go
+```
+
+* test
+```
+go test -v ./... -cover
+```
+
+
 # Ref
 
 * http://nakawatch.hatenablog.com/entry/2018/07/11/181453
