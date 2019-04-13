@@ -29,5 +29,6 @@ go test -v ./... -cover
 # Ref
 
 * http://nakawatch.hatenablog.com/entry/2018/07/11/181453
+* https://qiita.com/tenntenn/items/24fc34ec0c31f6474e6d
 
 ---
