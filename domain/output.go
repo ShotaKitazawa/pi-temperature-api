@@ -6,5 +6,5 @@ import "time"
 type Output struct {
 	ID        uint
 	State     string
-	CreatedAt *time.Time
+	CreatedAt time.Time
 }

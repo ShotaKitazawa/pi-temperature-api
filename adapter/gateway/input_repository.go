@@ -28,7 +28,7 @@ func (r *InputRepository) Get1() (*domain.Input, error) {
 		ID:          input.ID,
 		Temperature: input.Temperature,
 		Humidity:    input.Humidity,
-		CreatedAt:   &input.CreatedAt,
+		CreatedAt:   input.CreatedAt,
 	}, nil
 }
 

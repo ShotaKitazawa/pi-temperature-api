@@ -34,7 +34,7 @@ func (controller *InputController) Get1(c interfaces.Context) {
 			ID          uint       `json:"id"`
 			Temperature float64    `json:"temperature"`
 			Humidity    float64    `json:"humidity"`
-			CreatedAt   *time.Time `json:"created_at"`
+			CreatedAt   time.Time `json:"created_at"`
 		}
 	)
 	req := Request{}
