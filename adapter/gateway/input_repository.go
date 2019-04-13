@@ -23,7 +23,7 @@ type (
 func (r *InputRepository) Get1() (*domain.Input, error) {
 	input := Input{}
 
-	if err := r.Conn.First(&input); err != nil {
+	if err := r.Conn.First(&input); err.Error != nil {
 		return nil, err.Error
 	}
 	return &domain.Input{

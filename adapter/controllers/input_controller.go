@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/ShotaKitazawa/pi-temperature-api/adapter/gateway"
@@ -8,7 +9,6 @@ import (
 	"github.com/ShotaKitazawa/pi-temperature-api/usecase"
 
 	"github.com/jinzhu/gorm"
-	"github.com/pkg/errors"
 )
 
 type InputController struct {
@@ -41,10 +41,11 @@ func (controller *InputController) Get1(c interfaces.Context) {
 	c.Bind(&req)
 
 	data, err := controller.Interactor.Get1()
+	fmt.Println(err)
 	if err != nil {
-		controller.Interactor.Logger.Log(errors.Wrap(err, "input_controller: cannot get data"))
-		c.JSON(500, NewError(500, err.Error()))
-		return
+		//controller.Interactor.Logger.Log(errors.Wrap(err, "input_controller: cannot get data"))
+		//c.JSON(500, NewError(500, err.Error()))
+		//return
 	}
 	res := Response{
 		// ID:          data.ID,

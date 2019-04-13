@@ -1,16 +1,18 @@
 package gateway
 
 import (
+	"net/http"
 	"time"
 
 	"github.com/ShotaKitazawa/pi-temperature-api/domain"
+	"github.com/ShotaKitazawa/pi-temperature-api/utils"
 
 	"github.com/jinzhu/gorm"
 )
 
 type (
 	OutputRepository struct {
-		Conn *gorm.DB
+		Conn *http.Request
 	}
 
 	Output struct {
@@ -22,13 +24,12 @@ type (
 	}
 )
 
-func (r *OutputRepository) Post(*domain.Output) (int, error) {
-	// TODO
-	input := new(Output)
-
-	if err := r.Conn.Create(input); err != nil {
-		return 0, err.Error
+func (r *OutputRepository) Post(o *domain.Output) (int, error) {
+	resp, err := utils.HttpPost(r.Conn, o.State)
+	if err != nil {
+		return 0, err
 	}
-	return input.ID, nil
-}
+	defer resp.Body.Close()
 
+	return resp.StatusCode, nil
+}

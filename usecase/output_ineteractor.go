@@ -7,10 +7,10 @@ import (
 
 type OutputInteractor struct {
 	OutputRepository interfaces.OutputRepository
-	Logger         interfaces.Logger
+	Logger           interfaces.Logger
 }
 
 func (i *OutputInteractor) Post(input *domain.Output) (int, error) {
-	i.Logger.Log("post state data!")
+	//i.Logger.Log("post state data!")
 	return i.OutputRepository.Post(input)
 }

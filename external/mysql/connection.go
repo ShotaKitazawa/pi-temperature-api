@@ -12,7 +12,8 @@ var db *gorm.DB
 func Connect() *gorm.DB {
 	var err error
 
-	db, err = gorm.Open("mysql", "root:@tcp(db:3306)/pi-temterature")
+	url := "root:@tcp(db:3306)/pi-temterature"
+	db, err = gorm.Open("mysql", url)
 
 	if err != nil {
 		panic(err)
@@ -20,11 +21,6 @@ func Connect() *gorm.DB {
 
 	if !db.HasTable(&gateway.Input{}) {
 		if err := db.Table("input").CreateTable(&gateway.Input{}).Error; err != nil {
-			panic(err)
-		}
-	}
-	if !db.HasTable(&gateway.Output{}) {
-		if err := db.Table("output").CreateTable(&gateway.Output{}).Error; err != nil {
 			panic(err)
 		}
 	}

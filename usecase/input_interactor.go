@@ -11,7 +11,7 @@ type InputInteractor struct {
 }
 
 func (i *InputInteractor) Get1() (*domain.Input, error) {
-	i.Logger.Log("get data!")
+	//i.Logger.Log("get data!")
 	return i.InputRepository.Get1()
 }
 

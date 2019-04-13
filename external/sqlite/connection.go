@@ -11,7 +11,8 @@ var db *gorm.DB
 func Connect() *gorm.DB {
 	var err error
 
-	db, err = gorm.Open("sqlite3", "pi-temperature.sqlite3")
+	url := "pi-temperature.sqlite3"
+	db, err = gorm.Open("sqlite3", url)
 
 	if err != nil {
 		panic(err)
@@ -22,11 +23,6 @@ func Connect() *gorm.DB {
 			panic(err)
 		}
 	}
-	//if !db.HasTable(&gateway.Output{}) {
-	//	if err := db.Table("outputs").CreateTable(&gateway.Output{}).Error; err != nil {
-	//		panic(err)
-	//	}
-	//}
 
 	return db
 }
