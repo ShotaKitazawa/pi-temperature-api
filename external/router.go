@@ -6,6 +6,7 @@ import (
 	"github.com/ShotaKitazawa/pi-temperature-api/external/rest"
 	"github.com/ShotaKitazawa/pi-temperature-api/external/sqlite"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,6 +15,8 @@ var Router *gin.Engine
 
 func init() {
 	r := gin.Default()
+	r.Use(cors.Default())
+
 	v1 := r.Group("/api")
 
 	logger := &Logger{}
