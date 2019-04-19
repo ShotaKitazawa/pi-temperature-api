@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
 func HttpPost(req *http.Request, bodyStr string) (*http.Response, error) {
@@ -24,4 +25,12 @@ func HttpPost(req *http.Request, bodyStr string) (*http.Response, error) {
 	}
 
 	return resp, err
+}
+
+func GetEnvOrDefault(env, str string) string {
+	value := os.Getenv(env)
+	if value == "" {
+		value = str
+	}
+	return value
 }

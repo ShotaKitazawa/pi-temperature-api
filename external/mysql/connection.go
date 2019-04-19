@@ -2,6 +2,7 @@ package mysql
 
 import (
 	"github.com/ShotaKitazawa/pi-temperature-api/adapter/gateway"
+	"github.com/ShotaKitazawa/pi-temperature-api/utils"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -29,4 +30,13 @@ func Connect(target string) *gorm.DB {
 
 func CloseConn() {
 	db.Close()
+}
+
+func GetEnv() string {
+	dbUser := utils.GetEnvOrDefault("DB_USER", "root")
+	dbPass := utils.GetEnvOrDefault("DB_PASSWORD", "password")
+	dbHost := utils.GetEnvOrDefault("DB_HOST", "localhost")
+	dbPort := utils.GetEnvOrDefault("DB_PORT", "3306")
+	dbName := utils.GetEnvOrDefault("DB_NAME", "pi-temperature")
+	return dbUser + ":" + dbPass + "@tcp(" + dbHost + ":" + dbPort + ")/" + dbName
 }

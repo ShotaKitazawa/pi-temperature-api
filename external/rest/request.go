@@ -3,6 +3,8 @@ package rest
 import (
 	"bytes"
 	"net/http"
+
+	"github.com/ShotaKitazawa/pi-temperature-api/utils"
 )
 
 //var db *gorm.DB
@@ -22,4 +24,8 @@ func Request(target string) *http.Request {
 		panic(err)
 	}
 	return req
+}
+
+func GetEnv() string {
+	return utils.GetEnvOrDefault("REST_URL", "http://localhost:8000/")
 }

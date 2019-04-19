@@ -2,6 +2,7 @@ package sqlite
 
 import (
 	"github.com/ShotaKitazawa/pi-temperature-api/adapter/gateway"
+	"github.com/ShotaKitazawa/pi-temperature-api/utils"
 	"github.com/jinzhu/gorm"
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -28,4 +29,8 @@ func Connect(target string) *gorm.DB {
 
 func CloseConn() {
 	db.Close()
+}
+
+func GetEnv() string {
+	return utils.GetEnvOrDefault("SQLITE_FILENAME", "pi-temperature.sqlite3")
 }
