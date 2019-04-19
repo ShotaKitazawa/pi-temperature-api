@@ -21,7 +21,7 @@ type (
 func (r *InputRepository) Get1() (*domain.Input, error) {
 	input := Input{}
 
-	if err := r.DBConn.First(&input).Error; err != nil {
+	if err := r.DBConn.Last(&input).Error; err != nil {
 		return nil, err
 	}
 	return &domain.Input{
